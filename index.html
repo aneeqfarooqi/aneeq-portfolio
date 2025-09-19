@@ -1,115 +1,201 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aneeq | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aneeq Farooqui — Portfolio</title>
 </head>
-
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo"><span class="logo-symbol">&lt;/&gt;</span> Aneeq</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#achievements">Achievements</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="hamburger">&#9776;</div>
-  </nav>
+  <div class="app">
 
-  <!-- Hero Section -->
-  <header class="hero">
-    <h1 class="animate-text">Hi, I'm <span>Aneeq</span></h1>
-    <p class="animate-text">Aspiring Frontend Developer | Building clean & interactive websites</p>
-    <a href="#projects" class="btn">View My Work</a>
-  </header>
-
-  <!-- About Section -->
-  <section id="about" class="section">
-    <h2 class="section-title">About Me</h2>
-    <p>
-      I'm an aspiring frontend developer passionate about creating beautiful,
-      responsive and user-friendly websites. I love experimenting with new
-      designs, animations and interactive UI to make every project stand out.
-    </p>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills" class="section">
-    <h2 class="section-title">Skills</h2>
-    <div class="skills-grid">
-      <div class="skill-card">HTML5</div>
-      <div class="skill-card">CSS3</div>
-      <div class="skill-card">JavaScript</div>
-      <div class="skill-card">Responsive Design</div>
-      <div class="skill-card">Git / GitHub</div>
-      <div class="skill-card">Basic Express.js</div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="section">
-    <h2 class="section-title">Projects</h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <a href="https://weather-app-kappa-sandy-86.vercel.app/">
-          <h3>Weather App</h3>
-        </a>
-        <p>Weather app built with HTML, CSS & JS using API.</p>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="avatar">AF</div>
+        <div class="name">
+          <div class="title">Aneeq Farooqui</div>
+          <div class="tag">Frontend Developer</div>
+        </div>
       </div>
-      <div class="project-card">
-        <a href="#">
-          <h3>Netflix Clone</h3>
-        </a>
-        <p>Netflix landing page clone with responsive design.</p>
+
+      <p>Building clean, modern, responsive web experiences — clones, apps, and landing pages.</p>
+
+      <div class="socials">
+        <!-- replace hrefs with your URLs -->
+        <a title="GitHub" href="https://github.com/" target="_blank" rel="noreferrer">GH</a>
+        <a title="LinkedIn" href="https://www.linkedin.com/in/aneeq-farooqi-farooqi-836669330/" target="_blank" rel="noreferrer">in</a>
+        <a title="Email" href="mailto:your.email@example.com">✉</a>
       </div>
-      <div class="project-card">
-        <a href="https://ultra-edit-clone-topaz.vercel.app/">
-          <h3>UltraEdit Clone</h3>
-        </a>
-        <p>A modern clone of UltraEdit website.</p>
+
+      <nav class="nav">
+        <a href="#about" class="nav-link active">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="footer-note">© <span id="year">2025</span> Aneeq • Made with ❤️</div>
+    </aside>
+
+    <!-- Main (content) -->
+    <main class="main" id="main">
+      <!-- mobile topbar -->
+      <div class="mobile-top" id="mobileTop" style="display:none;">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="font-weight:800">Aneeq</div>
+          <div style="color:var(--muted);font-size:13px">Frontend Dev</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div class="hamburger" id="hamb">☰</div>
+        </div>
       </div>
-      <div class="project-card">
-        <a href="https://landing-page-gamma-three-75.vercel.app/">
-          <h3>Porsche Agency Page</h3>
-        </a>
-        <p>Responsive landing page for Porsche cars.</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- Achievements Section -->
-  <section id="achievements" class="section">
-    <h2 class="section-title">Achievements</h2>
-    <ul class="achievements-list">
-      <li>Completed multiple frontend projects in HTML, CSS, and JS.</li>
-      <li>Learned responsive design techniques from scratch.</li>
-      <li>Built real-world clone websites for practice and portfolio.</li>
-    </ul>
-  </section>
+      <!-- HERO -->
+      <header class="hero">
+        <div class="hero-left">
+          <div class="hi">Hi, my name is</div>
+          <div class="hero-title">Aneeq <span class="accent">Farooqui</span></div>
+          <div class="hero-sub">
+            I build clean, responsive, and animated front-end projects — clones, small apps, and landing pages.
+          </div>
+        </div>
+      </header>
 
-  <!-- Contact Section -->
-  <section id="contact" class="section">
-    <h2 class="section-title">Contact Me</h2>
-    <form class="contact-form">
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit" class="btn">Send Message</button>
-    </form>
-  </section>
+      <!-- ABOUT -->
+      <section id="about" class="card" style="margin-bottom:28px;">
+        <h2>About</h2>
+        <div style="display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap;">
+          <div style="flex:1; min-width:240px;">
+            <p style="color:var(--muted)">I’m an aspiring frontend developer. I’ve built real-world projects such as UI clones, interactive apps, and high-fidelity landing pages using modern HTML, CSS, and JavaScript. I focus on responsive layouts, animations, and clean UI.</p>
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+              <div class="tech">HTML</div><div class="tech">CSS</div><div class="tech">JavaScript</div><div class="tech">Responsive</div>
+            </div>
+          </div>
+          <div style="width:220px;">
+            <!-- small highlight panel -->
+            <div style="background:rgba(255,255,255,0.02); padding:14px; border-radius:10px; border:1px solid rgba(255,255,255,0.02)">
+              <strong style="display:block;margin-bottom:6px">Currently</strong>
+              <div style="color:var(--muted); font-size:14px">Building portfolio & improving UI animations.</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Aneeq. All rights reserved.</p>
-  </footer>
+      <!-- PROJECTS -->
+      <section id="projects" style="margin-bottom:28px;">
+        <h2>Projects</h2>
+        <div class="projects-list">
+          <!-- Project: UltraEdit -->
+          <article class="project card">
+            <div class="screenshot">
+              <img src="images/ultraedit.PNG" alt="UltraEdit Clone screenshot">
+            </div>
+            <div class="meta">
+              <h3>UltraEdit Clone</h3>
+              <p>A front-end clone of the UltraEdit website: responsive layout, editor-like UI, and clean typography.</p>
+              <div class="tech-list">
+                <span class="tech">HTML</span>
+                <span class="tech">CSS</span>
+                <span class="tech">JavaScript</span>
+              </div>
+              <div class="links" style="margin-top:14px">
+                <a class="btn demo" href="https://ultra-edit-clone-topaz.vercel.app/" target="_blank" rel="noreferrer">Live Demo</a>
+                <a class="btn code" href="https://github.com/dashboard" target="_blank" rel="noreferrer">Code</a>
+              </div>
+            </div>
+          </article>
 
-  <script src="script.js"></script>
+          <!-- Project: Netflix -->
+          <article class="project card">
+            <div class="screenshot">
+              <img src="images/netflix.png" alt="Netflix Clone screenshot">
+            </div>
+            <div class="meta">
+              <h3>Netflix Clone</h3>
+              <p>Netflix-inspired UI with movie cards, hover interactions, and responsive grid layout.</p>
+              <div class="tech-list">
+                <span class="tech">HTML</span>
+                <span class="tech">CSS</span>
+                <span class="tech">JavaScript</span>
+              </div>
+              <div class="links" style="margin-top:14px">
+                <a class="btn demo" href="#" target="_blank" rel="noreferrer">Live Demo</a>
+                <a class="btn code" href="https://github.com/dashboard" target="_blank" rel="noreferrer">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project: Weather -->
+          <article class="project card">
+            <div class="screenshot">
+              <img src="images/weather.PNG" alt="Weather App screenshot">
+            </div>
+            <div class="meta">
+              <h3>Weather App</h3>
+              <p>Weather app that fetches realtime data from OpenWeather API. Search, current conditions, and minimal UI.</p>
+              <div class="tech-list">
+                <span class="tech">HTML</span><span class="tech">CSS</span><span class="tech">AJAX</span>
+              </div>
+              <div class="links" style="margin-top:14px">
+                <a class="btn demo" href="https://weather-app-kappa-sandy-86.vercel.app/" target="_blank" rel="noreferrer">Live Demo</a>
+                <a class="btn code" href="https://github.com/dashboard" target="_blank" rel="noreferrer">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project: Porsche -->
+          <article class="project card">
+            <div class="screenshot">
+              <img src="images/porsche.PNG" alt="Porsche Landing screenshot">
+            </div>
+            <div class="meta">
+              <h3>Porsche Landing Page</h3>
+              <p>High fidelity landing page with parallax-like imagery and elegant hero composition for a premium feel.</p>
+              <div class="tech-list">
+                <span class="tech">HTML</span><span class="tech">CSS</span><span class="tech">JS</span>
+              </div>
+              <div class="links" style="margin-top:14px">
+                <a class="btn demo" href="https://https://landing-page-gamma-three-75.vercel.app/" target="_blank" rel="noreferrer">Live Demo</a>
+                <a class="btn code" href="https://github.com/dashboard" target="_blank" rel="noreferrer">Code</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="card">
+        <h2>Contact</h2>
+        <div class="contact-grid">
+          <div>
+            <p style="color:var(--muted)">Want to work together or just say hi? Fill the form and I'll reply.</p>
+            <p style="margin-top:12px"><strong>Email</strong><br><a href="mailto:your.email@example.com" style="color:var(--accent);text-decoration:none">your.email@example.com</a></p>
+          </div>
+
+          <!-- Formspree form: replace ACTION with your Formspree endpoint -->
+          <div>
+            <!-- Signup on https://formspree.io to get your form endpoint, then replace the action URL below -->
+            <form id="contactForm" class="card" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required>
+
+              <label for="email" style="margin-top:10px">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+              <label for="message" style="margin-top:10px">Message</label>
+              <textarea id="message" name="message" placeholder="Write a short message" required></textarea>
+
+              <button class="send" type="submit">Send Message</button>
+              <div id="formMsg" style="margin-top:10px;color:var(--muted);font-size:13px"></div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        Built with ❤️ • <span id="footerYear"></span>
+      </footer>
+
+    </main>
+  </div>
 </body>
-
 </html>
