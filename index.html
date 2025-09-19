@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aneeq Farooqui | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Background Canvas -->
+  <canvas id="bgCanvas"></canvas>
+
   <!-- Sidebar -->
-  <aside>
+  <aside id="sidebar">
     <div>
-      <h1 id="typing"></h1>
+      <h1 class="typing">Aneeq Farooqui</h1>
       <p>Frontend Developer</p>
       <nav>
         <ul>
@@ -27,80 +30,63 @@
     </div>
   </aside>
 
-  <!-- Animated background -->
-  <canvas id="bgCanvas"></canvas>
+  <!-- Hamburger Button -->
+  <button id="menu-toggle">☰</button>
 
   <!-- Main -->
   <main>
-    <section id="about" class="reveal">
+    <section id="about" class="fade-in">
       <h2>About Me</h2>
       <p>
-        I'm an aspiring frontend developer with experience in HTML, CSS, and JavaScript. I love creating real-world projects like clones, apps, and landing pages that showcase my skills in responsive design and UI/UX.
+        I'm an aspiring frontend developer with experience in HTML, CSS, and JavaScript. 
+        I create real-world projects like clones, apps, and landing pages with a focus 
+        on responsive design and user experience.
       </p>
     </section>
 
-    <section id="projects">
-      <h2 class="reveal">Projects</h2>
+    <section id="projects" class="fade-in">
+      <h2>Projects</h2>
 
-      <div class="project reveal">
-        <img src="images/ultraedit.PNG" alt="UltraEdit Clone">
-        <div class="project-content">
-          <h3>UltraEdit Clone</h3>
-          <p>A front-end clone of the UltraEdit website with responsive layout and modern design.</p>
-          <div class="tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
-          <div class="links">
-            <a href="#">Live Demo</a>
-            <a href="#">Code</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project reveal">
-        <img src="images/netflix.png" alt="Netflix Clone">
-        <div class="project-content">
-          <h3>Netflix Clone</h3>
-          <p>Netflix-inspired UI with movie cards, hover effects, and responsive design.</p>
-          <div class="tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
-          <div class="links">
-            <a href="#">Live Demo</a>
-            <a href="#">Code</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project reveal">
+      <div class="project">
         <img src="images/weather.PNG" alt="Weather App">
         <div class="project-content">
           <h3>Weather App</h3>
-          <p>Weather forecast app using OpenWeather API with search functionality and live data.</p>
-          <div class="tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
-          <div class="links">
-            <a href="#">Live Demo</a>
-            <a href="#">Code</a>
-          </div>
+          <p>Weather forecast app using APIs. Responsive with live background changes based on weather.</p>
         </div>
       </div>
 
-      <div class="project reveal">
-        <img src="images/porsche.PNG" alt="Porsche Landing Page">
+      <div class="project">
+        <img src="images/netflix.png" alt="Netflix Clone">
         <div class="project-content">
-          <h3>Porsche Landing Page</h3>
-          <p>High-end Porsche landing page with animations, parallax effects, and responsive layout.</p>
-          <div class="tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
-          <div class="links">
-            <a href="#">Live Demo</a>
-            <a href="#">Code</a>
-          </div>
+          <h3>Netflix Clone</h3>
+          <p>Netflix-inspired UI with movie cards, hover effects, and responsive grid design.</p>
         </div>
+      </div>
+
+      <div class="project">
+        <img src="images/ultraedit.PNG" alt="UltraEdit Clone">
+        <div class="project-content">
+          <h3>UltraEdit Clone</h3>
+          <p>A responsive front-end clone of the UltraEdit website, showcasing clean design & layout.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="images/porsche.PNG" alt="Porsche Agency Page">
+        <div class="project-content">
+          <h3>Porsche Agency Page</h3>
+          <p>Luxury car landing page design with smooth animations and a modern UI/UX approach.</p>
+        </div>
+      </div>
       </div>
     </section>
 
-    <section id="contact" class="reveal">
+    <section id="contact" class="fade-in">
       <h2>Contact</h2>
-      <form action="https://formspree.io/f/your_form_id" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
         <button type="submit">Send Message</button>
       </form>
     </section>
