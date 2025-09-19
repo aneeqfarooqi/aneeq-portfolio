@@ -1,126 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aneeq Farooqui | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aneeq | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <!-- Navbar -->
   <nav class="navbar">
-  <div class="logo">Aneeq</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#achievements">Achievements</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="hamburger">&#9776;</div>
-</nav>
-  <!-- Hero -->
+    <div class="logo"><span class="logo-symbol">&lt;/&gt;</span> Aneeq</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="hamburger">&#9776;</div>
+  </nav>
+
+  <!-- Hero Section -->
   <header class="hero">
-    <div class="container">
-      <h1 class="fade-in">Hi, I'm <span>Aneeq Farooqui</span></h1>
-      <p class="fade-in">Frontend Developer | Aspiring Web Engineer</p>
-      <a href="#projects" class="btn glow">View My Work</a>
-    </div>
+    <h1 class="animate-text">Hi, I'm <span>Aneeq</span></h1>
+    <p class="animate-text">Aspiring Frontend Developer | Building clean & interactive websites</p>
+    <a href="#projects" class="btn">View My Work</a>
   </header>
 
-  <!-- About -->
+  <!-- About Section -->
   <section id="about" class="section">
-    <div class="container fade-in">
-      <h2>About Me</h2>
-      <p>
-        I'm an aspiring frontend developer passionate about creating modern,
-        responsive, and user-friendly websites. I’ve built projects like
-        UltraEdit Clone, Netflix Clone, a Weather App, and a Porsche Landing Page.
-      </p>
+    <h2 class="section-title">About Me</h2>
+    <p>
+      I'm an aspiring frontend developer passionate about creating beautiful,
+      responsive and user-friendly websites. I love experimenting with new
+      designs, animations and interactive UI to make every project stand out.
+    </p>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">HTML5</div>
+      <div class="skill-card">CSS3</div>
+      <div class="skill-card">JavaScript</div>
+      <div class="skill-card">Responsive Design</div>
+      <div class="skill-card">Git / GitHub</div>
+      <div class="skill-card">Basic Express.js</div>
     </div>
   </section>
 
-  <!-- Skills -->
-  <section id="skills" class="section dark">
-    <div class="container fade-in">
-      <h2>Skills</h2>
-      <div class="skills">
-        <div class="skill"><span>HTML</span><div class="bar"><div class="fill html"></div></div></div>
-        <div class="skill"><span>CSS</span><div class="bar"><div class="fill css"></div></div></div>
-        <div class="skill"><span>JavaScript</span><div class="bar"><div class="fill js"></div></div></div>
-        <div class="skill"><span>Responsive Design</span><div class="bar"><div class="fill responsive"></div></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
+  <!-- Projects Section -->
   <section id="projects" class="section">
-    <div class="container fade-in">
-      <h2>Projects</h2>
-      <div class="projects-grid">
-        <div class="card">
-          <a href="https://ultra-edit-clone-topaz.vercel.app/"><img src="images/ultraedit.PNG" alt="UltraEdit Clone"></a>
-          <h3>UltraEdit Clone</h3>
-          <p>Frontend clone with responsive design.</p>
-        </div>
-        <div class="card">
-          <a href="#"><img src="images/netflix.png" alt="Netflix Clone"></a>
-          <h3>Netflix Clone</h3>
-          <p>Movie UI clone with hover effects.</p>
-        </div>
-        <div class="card">
-          <a href="https://weather-app-kappa-sandy-86.vercel.app/"><img src="images/weather.PNG" alt="Weather App"></a>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <a href="https://weather-app-kappa-sandy-86.vercel.app/">
           <h3>Weather App</h3>
-          <p>API-based app with live weather data.</p>
-        </div>
-        <div class="card">
-         <a href="https://landing-page-gamma-three-75.vercel.app/"> <img src="images/porsche.PNG" alt="Porsche Landing Page"></a>
-          <h3>Porsche Landing Page</h3>
-          <p>Luxury landing page with animations.</p>
-        </div>
+        </a>
+        <p>Weather app built with HTML, CSS & JS using API.</p>
+      </div>
+      <div class="project-card">
+        <a href="#">
+          <h3>Netflix Clone</h3>
+        </a>
+        <p>Netflix landing page clone with responsive design.</p>
+      </div>
+      <div class="project-card">
+        <a href="https://ultra-edit-clone-topaz.vercel.app/">
+          <h3>UltraEdit Clone</h3>
+        </a>
+        <p>A modern clone of UltraEdit website.</p>
+      </div>
+      <div class="project-card">
+        <a href="https://landing-page-gamma-three-75.vercel.app/">
+          <h3>Porsche Agency Page</h3>
+        </a>
+        <p>Responsive landing page for Porsche cars.</p>
       </div>
     </div>
   </section>
 
-  <!-- Achievements -->
-  <section id="achievements" class="section dark">
-    <div class="container fade-in">
-      <h2>Achievements</h2>
-      <ul>
-        <li>Completed multiple real-world frontend projects</li>
-        <li>Built responsive websites from Figma designs</li>
-        <li>Learning and growing consistently in web development</li>
-      </ul>
-    </div>
+  <!-- Achievements Section -->
+  <section id="achievements" class="section">
+    <h2 class="section-title">Achievements</h2>
+    <ul class="achievements-list">
+      <li>Completed multiple frontend projects in HTML, CSS, and JS.</li>
+      <li>Learned responsive design techniques from scratch.</li>
+      <li>Built real-world clone websites for practice and portfolio.</li>
+    </ul>
   </section>
 
-  <!-- Testimonials -->
-  <section id="testimonials" class="section">
-    <div class="container fade-in">
-      <h2>Testimonials</h2>
-      <div class="testimonials">
-        <blockquote>
-          "Aneeq is a hardworking developer who builds professional projects with dedication."
-        </blockquote>
-        <blockquote>
-          "Creative, passionate, and always eager to learn new things."
-        </blockquote>
-      </div>
-    </div>
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <h2 class="section-title">Contact Me</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section dark">
-    <div class="container fade-in">
-      <h2>Contact</h2>
-      <form action="https://formspree.io/f/your_form_id" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit" class="btn glow">Send Message</button>
-      </form>
-    </div>
-  </section>
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Aneeq. All rights reserved.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
+
 </html>
