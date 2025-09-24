@@ -98,4 +98,17 @@
         }
       });
     }
+    // Animate skill bars
+const skillObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.querySelectorAll('.bar div').forEach(bar=>{
+        bar.style.width = bar.style.width; // triggers animation
+      });
+      skillObserver.unobserve(entry.target);
+    }
+  })
+},{ threshold:0.2 });
+document.querySelectorAll('#skills').forEach(sec=>skillObserver.observe(sec));
+
  
