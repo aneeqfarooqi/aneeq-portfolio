@@ -142,9 +142,8 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
-
-// === CINEMATIC GALAXY + DUAL LIGHTNING BACKGROUND ===
-(function() {
+// === CINEMATIC GALAXY + BLUE-WHITE LIGHTNING BACKGROUND ===
+(function () {
   const canvas = document.getElementById("bg");
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
@@ -157,7 +156,7 @@ animate();
   window.addEventListener("resize", resize);
   resize();
 
-  // 🌌 Galaxy Stars with depth & parallax
+  // 🌌 Galaxy Stars with depth, parallax & zoom
   const stars = [];
   const STAR_COUNT = 300;
 
@@ -173,26 +172,24 @@ animate();
     }
   }
 
-  // Mouse-based parallax
-  let mouseX = 0.5, mouseY = 0.5;
-  document.addEventListener("mousemove", e => {
+  // Mouse Parallax
+  let mouseX = 0.5,
+    mouseY = 0.5;
+  document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX / window.innerWidth;
     mouseY = e.clientY / window.innerHeight;
   });
 
+  let zoom = 1,
+    zoomDir = 1;
+
   function drawStars() {
     for (const s of stars) {
-      const parallaxX = (mouseX - 0.5) * s.z * 20; 
+      const parallaxX = (mouseX - 0.5) * s.z * 20;
       const parallaxY = (mouseY - 0.5) * s.z * 20;
 
-      let x = s.x + parallaxX;
-      let y = s.y + parallaxY;
-
-      // wrap around edges
-      if (x < 0) x += w;
-      if (x > w) x -= w;
-      if (y < 0) y += h;
-      if (y > h) y -= h;
+      const x = (s.x + parallaxX - w / 2) * zoom + w / 2;
+      const y = (s.y + parallaxY - h / 2) * zoom + h / 2;
 
       ctx.beginPath();
       ctx.arc(x, y, s.r, 0, Math.PI * 2);
@@ -204,16 +201,20 @@ animate();
   // Slight star drift
   function moveStars() {
     for (const s of stars) {
-      s.x += (Math.random() - 0.5) * 0.5; // faster subtle motion
+      s.x += (Math.random() - 0.5) * 0.5;
       s.y += (Math.random() - 0.5) * 0.5;
       if (s.x < 0) s.x = w;
       if (s.x > w) s.x = 0;
       if (s.y < 0) s.y = h;
       if (s.y > h) s.y = 0;
     }
+
+    // 🌠 soft zoom in/out
+    zoom += 0.001 * zoomDir;
+    if (zoom > 1.03 || zoom < 0.97) zoomDir *= -1;
   }
 
-  // ⚡ Dual Lightning (red + white)
+  // ⚡ Lightning
   const bolts = [];
   let flash = 0;
 
@@ -224,14 +225,18 @@ animate();
   function createBolt() {
     const startX = rand(0, w);
     const parts = [];
-    let x = startX, y = 0;
+    let x = startX,
+      y = 0;
     const segCount = 6 + Math.floor(Math.random() * 6);
     for (let i = 0; i < segCount; i++) {
       x += rand(-50, 50);
       y += rand(h * 0.05, h * 0.15);
       parts.push({ x, y });
     }
-    const color = Math.random() < 0.5 ? "red" : "white";
+
+    // ⚡ Randomly blue or white lightning
+    const color = Math.random() < 0.5 ? "blue" : "white";
+
     return { parts, color, life: 0, maxLife: rand(20, 35), alpha: 1 };
   }
 
@@ -240,16 +245,21 @@ animate();
     ctx.globalCompositeOperation = "lighter";
     ctx.lineJoin = "round";
     ctx.lineCap = "round";
-    ctx.shadowColor =
-      b.color === "red"
-        ? "rgba(255, 60, 60, 0.9)"
-        : "rgba(255, 255, 255, 0.9)";
+
+    const glowColor =
+      b.color === "blue"
+        ? "rgba(100,180,255,0.9)" // soft electric blue glow
+        : "rgba(255,255,255,0.9)";
+    const strokeColor =
+      b.color === "blue"
+        ? `rgba(130,200,255,${b.alpha})`
+        : `rgba(255,255,255,${b.alpha})`;
+
+    ctx.shadowColor = glowColor;
     ctx.shadowBlur = 35;
-    ctx.strokeStyle =
-      b.color === "red"
-        ? `rgba(255, 0, 0, ${b.alpha})`
-        : `rgba(255, 255, 255, ${b.alpha})`;
+    ctx.strokeStyle = strokeColor;
     ctx.lineWidth = 2.5;
+
     ctx.beginPath();
     const start = b.parts[0];
     ctx.moveTo(start.x, start.y);
@@ -258,7 +268,7 @@ animate();
     ctx.restore();
   }
 
-  // 🎬 Animation Loop
+  // 🎬 Animate everything
   function animate() {
     ctx.fillStyle = "rgba(0, 0, 20, 0.25)";
     ctx.fillRect(0, 0, w, h);
@@ -266,7 +276,7 @@ animate();
     moveStars();
     drawStars();
 
-    // ⚡ More frequent lightning for cinematic effect
+    // ⚡ Lightning frequency
     if (Math.random() < 0.05) {
       bolts.push(createBolt());
       flash = rand(0.4, 0.7);
@@ -281,7 +291,7 @@ animate();
     }
 
     if (flash > 0) {
-      ctx.fillStyle = `rgba(255,255,255,${flash * 0.2})`;
+      ctx.fillStyle = `rgba(200,220,255,${flash * 0.15})`;
       ctx.fillRect(0, 0, w, h);
       flash -= 0.02;
     }
