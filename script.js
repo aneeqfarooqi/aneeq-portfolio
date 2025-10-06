@@ -142,7 +142,6 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
-// === CINEMATIC GALAXY + BLUE-WHITE LIGHTNING BACKGROUND ===
 (function () {
   const canvas = document.getElementById("bg");
   if (!canvas) return;
@@ -156,65 +155,21 @@ animate();
   window.addEventListener("resize", resize);
   resize();
 
-  // 🌌 Galaxy Stars with depth, parallax & zoom
+  // 🌌 Infinite stars setup
+  const STAR_COUNT = 450;
   const stars = [];
-  const STAR_COUNT = 300;
-
   function initStars() {
+    stars.length = 0;
     for (let i = 0; i < STAR_COUNT; i++) {
       stars.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        z: Math.random() * 3 + 0.5, // depth
-        r: Math.random() * 1.2 + 0.3,
-        alpha: Math.random() * 0.8 + 0.2
+        x: (Math.random() - 0.5) * w * 2,
+        y: (Math.random() - 0.5) * h * 2,
+        z: Math.random() * 2000,
       });
     }
   }
 
-  // Mouse Parallax
-  let mouseX = 0.5,
-    mouseY = 0.5;
-  document.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX / window.innerWidth;
-    mouseY = e.clientY / window.innerHeight;
-  });
-
-  let zoom = 1,
-    zoomDir = 1;
-
-  function drawStars() {
-    for (const s of stars) {
-      const parallaxX = (mouseX - 0.5) * s.z * 20;
-      const parallaxY = (mouseY - 0.5) * s.z * 20;
-
-      const x = (s.x + parallaxX - w / 2) * zoom + w / 2;
-      const y = (s.y + parallaxY - h / 2) * zoom + h / 2;
-
-      ctx.beginPath();
-      ctx.arc(x, y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
-      ctx.fill();
-    }
-  }
-
-  // Slight star drift
-  function moveStars() {
-    for (const s of stars) {
-      s.x += (Math.random() - 0.5) * 0.5;
-      s.y += (Math.random() - 0.5) * 0.5;
-      if (s.x < 0) s.x = w;
-      if (s.x > w) s.x = 0;
-      if (s.y < 0) s.y = h;
-      if (s.y > h) s.y = 0;
-    }
-
-    // 🌠 soft zoom in/out
-    zoom += 0.001 * zoomDir;
-    if (zoom > 1.03 || zoom < 0.97) zoomDir *= -1;
-  }
-
-  // ⚡ Lightning
+  // ⚡ Lightning setup
   const bolts = [];
   let flash = 0;
 
@@ -233,10 +188,7 @@ animate();
       y += rand(h * 0.05, h * 0.15);
       parts.push({ x, y });
     }
-
-    // ⚡ Randomly blue or white lightning
-    const color = Math.random() < 0.5 ? "blue" : "white";
-
+    const color = Math.random() < 0.5 ? "white" : "blue";
     return { parts, color, life: 0, maxLife: rand(20, 35), alpha: 1 };
   }
 
@@ -248,7 +200,7 @@ animate();
 
     const glowColor =
       b.color === "blue"
-        ? "rgba(100,180,255,0.9)" // soft electric blue glow
+        ? "rgba(100,180,255,0.9)"
         : "rgba(255,255,255,0.9)";
     const strokeColor =
       b.color === "blue"
@@ -256,7 +208,7 @@ animate();
         : `rgba(255,255,255,${b.alpha})`;
 
     ctx.shadowColor = glowColor;
-    ctx.shadowBlur = 35;
+    ctx.shadowBlur = 40;
     ctx.strokeStyle = strokeColor;
     ctx.lineWidth = 2.5;
 
@@ -268,18 +220,35 @@ animate();
     ctx.restore();
   }
 
-  // 🎬 Animate everything
+  // 🪐 Animate infinite stars
+  function drawStars() {
+    for (const s of stars) {
+      s.z -= 6;
+      if (s.z <= 0) s.z = 2000;
+      const k = 128 / s.z;
+      const px = w / 2 + s.x * k;
+      const py = h / 2 + s.y * k;
+      if (px >= 0 && px <= w && py >= 0 && py <= h) {
+        const size = (1 - s.z / 2000) * 2.4;
+        ctx.beginPath();
+        ctx.arc(px, py, size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${1 - s.z / 2000})`;
+        ctx.fill();
+      }
+    }
+  }
+
+  // 🎬 Animate
   function animate() {
-    ctx.fillStyle = "rgba(0, 0, 20, 0.25)";
+    // pure black base
+    ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
     ctx.fillRect(0, 0, w, h);
 
-    moveStars();
     drawStars();
 
-    // ⚡ Lightning frequency
     if (Math.random() < 0.05) {
       bolts.push(createBolt());
-      flash = rand(0.4, 0.7);
+      flash = rand(0.3, 0.6);
     }
 
     for (let i = bolts.length - 1; i >= 0; i--) {
