@@ -143,4 +143,130 @@ function animate() {
 }
 animate();
 
- 
+ // === GALAXY + LIGHTNING BACKGROUND ===
+(function() {
+  const canvas = document.getElementById("bg");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  let w, h;
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resize);
+  resize();
+
+  // 🌌 Galaxy Stars
+  const stars = [];
+  const STAR_COUNT = 250;
+
+  function initStars() {
+    for (let i = 0; i < STAR_COUNT; i++) {
+      stars.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.3 + 0.2,
+        alpha: Math.random() * 0.8 + 0.2,
+        dx: (Math.random() - 0.5) * 0.05,
+        dy: (Math.random() - 0.5) * 0.05
+      });
+    }
+  }
+
+  function drawStars() {
+    for (const s of stars) {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
+      ctx.fill();
+    }
+  }
+
+  function moveStars() {
+    for (const s of stars) {
+      s.x += s.dx;
+      s.y += s.dy;
+      if (s.x < 0) s.x = w;
+      if (s.x > w) s.x = 0;
+      if (s.y < 0) s.y = h;
+      if (s.y > h) s.y = 0;
+    }
+  }
+
+  // ⚡ Lightning effect
+  const bolts = [];
+  let flash = 0;
+
+  function rand(a, b) {
+    return a + Math.random() * (b - a);
+  }
+
+  function createBolt() {
+    const startX = rand(0, w);
+    const parts = [];
+    let x = startX, y = 0;
+    const segCount = 6 + Math.floor(Math.random() * 6);
+    for (let i = 0; i < segCount; i++) {
+      x += rand(-50, 50);
+      y += rand(h * 0.05, h * 0.15);
+      parts.push({ x, y });
+    }
+    return {
+      parts,
+      life: 0,
+      maxLife: rand(12, 25),
+      alpha: 1
+    };
+  }
+
+  function drawBolt(b) {
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.shadowColor = "rgba(180, 220, 255, 0.7)";
+    ctx.shadowBlur = 20;
+    ctx.strokeStyle = `rgba(173,216,255,${b.alpha})`;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    const start = b.parts[0];
+    ctx.moveTo(start.x, start.y);
+    for (const p of b.parts) ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // 🎬 Animate everything
+  function animate() {
+    ctx.fillStyle = "rgba(0, 0, 20, 0.3)";
+    ctx.fillRect(0, 0, w, h);
+
+    moveStars();
+    drawStars();
+
+    if (Math.random() < 0.02) {
+      bolts.push(createBolt());
+      flash = rand(0.3, 0.6);
+    }
+
+    for (let i = bolts.length - 1; i >= 0; i--) {
+      const b = bolts[i];
+      drawBolt(b);
+      b.life++;
+      b.alpha = Math.max(0, 1 - b.life / b.maxLife);
+      if (b.life > b.maxLife) bolts.splice(i, 1);
+    }
+
+    if (flash > 0) {
+      ctx.fillStyle = `rgba(255,255,255,${flash * 0.15})`;
+      ctx.fillRect(0, 0, w, h);
+      flash -= 0.02;
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  initStars();
+  animate();
+})();
